@@ -20,7 +20,7 @@ Handy examples for setting up a development environment for the [medusa-payment-
 2. Install the `medusa-payment-yookassa` plugin in local:
    ```bash
    # Open a separate terminal window and run
-   cd packages/medusa-payment-yookassa
+   cd packages/medusa-payment-tochka
    
    # Install
    yarn
@@ -48,7 +48,7 @@ Handy examples for setting up a development environment for the [medusa-payment-
    yarn
 
    # Install the local plugin dependency
-   npx medusa plugin:add medusa-payment-yookassa
+   npx medusa plugin:add medusa-payment-tochka
    yarn
 
    # Set up environment variables

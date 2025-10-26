@@ -72,9 +72,9 @@
 ## Установка
 
 ```bash
-yarn add medusa-payment-yookassa
+yarn add medusa-payment-tochka
 # или
-npm install medusa-payment-yookassa
+npm install medusa-payment-tochka
 ```
 
 ## 📘  Документация

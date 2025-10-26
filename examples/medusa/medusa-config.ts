@@ -29,7 +29,7 @@ module.exports = defineConfig({
       options: {
         providers: [
           {
-            resolve: "medusa-payment-yookassa/providers/payment-yookassa",
+            resolve: "medusa-payment-tochka/providers/payment-yookassa",
             id: "yookassa",
             options: {
               shopId: process.env.YOOKASSA_SHOP_ID,

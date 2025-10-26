@@ -72,9 +72,9 @@ Connect with other Medusa developers on Telegram – [@medusajs_chat](https://t.
 ## Installation
 
 ```bash
-yarn add medusa-payment-yookassa
+yarn add medusa-payment-tochka
 # or
-npm install medusa-payment-yookassa
+npm install medusa-payment-tochka
 ```
 
 ## 📘  Documentation

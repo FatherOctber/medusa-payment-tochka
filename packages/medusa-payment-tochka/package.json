@@ -1,16 +1,16 @@
 {
-  "name": "medusa-payment-yookassa",
-  "version": "0.2.4",
-  "description": "YooKassa payment provider for Medusa",
-  "author": "Sergei Kudinov",
+  "name": "medusa-payment-tochka",
+  "version": "0.1.0",
+  "description": "Tochka Bank payment provider for Medusa",
+  "author": "Nikita Mishnev",
   "license": "MIT",
   "files": [
     ".medusa/server"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/sergkudinov/medusa-payment-yookassa",
-    "directory": "packages/medusa-payment-yookassa"
+    "url": "https://github.com/fatheroctber/medusa-payment-tochka",
+    "directory": "packages/medusa-payment-tochka"
   },
   "exports": {
     "./package.json": "./package.json",
@@ -36,6 +36,7 @@
     "plugin"
   ],
   "scripts": {
+    "generate_tochka_api": "swagger-typescript-api -p ./../medusa-payment-tochka/spec/tochka-api-spec.json -o ./../medusa-payment-tochka/src/providers/payment-yookassa/types/tochka-api -n tochka-api.ts",
     "build": "medusa plugin:build",
     "dev": "yarn predev && medusa plugin:develop",
     "predev": "medusa plugin:publish",
@@ -59,14 +60,19 @@
     "@mikro-orm/migrations": "6.4.3",
     "@mikro-orm/postgresql": "6.4.3",
     "@swc/core": "1.5.7",
+    "@types/jest": "^30.0.0",
     "@types/node": "^22.13.11",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
     "awilix": "^8.0.1",
+    "jest": "^30.2.0",
+    "openapi-typescript": "^7.10.1",
     "pg": "^8.14.1",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "swagger-typescript-api": "^13.2.16",
+    "ts-jest": "^29.4.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2",
     "vite": "^5.2.11",

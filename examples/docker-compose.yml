@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_PASSWORD: supersecret
       POSTGRES_USER: medusa
-      POSTGRES_DB: medusa-payment-yookassa
+      POSTGRES_DB: medusa-payment-tochka
   adminer:
     image: adminer
     restart: always
