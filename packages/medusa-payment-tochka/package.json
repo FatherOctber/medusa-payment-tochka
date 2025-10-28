@@ -1,6 +1,6 @@
 {
   "name": "medusa-payment-tochka",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Tochka Bank payment provider for Medusa",
   "author": "Nikita Mishnev",
   "license": "MIT",
@@ -12,7 +12,14 @@
     "url": "https://github.com/fatheroctber/medusa-payment-tochka",
     "directory": "packages/medusa-payment-tochka"
   },
+  "main": "./.medusa/server/src/index.js",
+  "types": "./.medusa/server/src/index.d.ts",
   "exports": {
+    ".": {
+      "import": "./.medusa/server/src/index.js",
+      "require": "./.medusa/server/src/index.js",
+      "types": "./.medusa/server/src/index.d.ts"
+    },
     "./package.json": "./package.json",
     "./providers/*": "./.medusa/server/src/providers/*/index.js",
     "./admin": {
@@ -68,7 +75,7 @@
     "awilix": "^8.0.1",
     "jest": "^30.2.0",
     "openapi-typescript": "^7.10.1",
-    "pg": "^8.14.1",
+    "pg": "^8.13.0",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -93,7 +100,7 @@
     "@mikro-orm/migrations": "6.4.3",
     "@mikro-orm/postgresql": "6.4.3",
     "awilix": "^8.0.1",
-    "pg": "^8.14.1"
+    "pg": "^8.13.0"
   },
   "engines": {
     "node": ">=20"

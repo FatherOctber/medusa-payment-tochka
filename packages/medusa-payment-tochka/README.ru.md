@@ -59,33 +59,37 @@ npm install medusa-payment-tochka
 Добавьте плагин в ваш `medusa-config.ts`:
 
 ```typescript
-const modules = {
-  // ... другие модули
-  payment: {
-    resolve: "@medusajs/payment",
-    options: {
-      providers: [
+module.exports = defineConfig({
+    modules: [
+// ... другие модули
         {
-          resolve: "medusa-payment-tochka",
-          id: "tochka",
-          options: {
-            tochkaJwtToken: process.env.TOCHKA_JWT_TOKEN,
-            clientId: process.env.TOCHKA_CLIENT_ID,
-            webhookPublicKeyJson: process.env.TOCHKA_WEBHOOK_PUBLIC_KEY,
-            tochkaApiVersion: "v1.0", // опционально, по умолчанию "v1.0"
-            developerMode: process.env.NODE_ENV !== "production", // опционально, по умолчанию false
-            preAuthorization: false, // опционально, включить двухстадийные платежи
-            paymentPurpose: "Оплата заказа", // опционально, описание платежа по умолчанию
-            withReceipt: true, // опционально, включить формирование чеков
-            taxSystemCode: "USN_INCOME", // обязательно если withReceipt = true
-            taxItemDefault: "VAT_0", // обязательно если withReceipt = true
-            taxShippingDefault: "VAT_0", // обязательно если withReceipt = true
-          },
-        },
-      ],
-    },
-  },
-}
+            resolve: "@medusajs/medusa/payment",
+            options:
+                {
+                    providers: [
+                        {
+                            resolve: "medusa-payment-tochka/providers/payment-tochka",
+                            id: "tochka",
+                            options: {
+                                tochkaJwtToken: process.env.TOCHKA_JWT_TOKEN,
+                                clientId: process.env.TOCHKA_CLIENT_ID,
+                                webhookPublicKeyJson: process.env.TOCHKA_WEBHOOK_PUBLIC_KEY,
+                                tochkaApiVersion: "v1.0", // опционально, по умолчанию "v1.0"
+                                developerMode: process.env.NODE_ENV !== "production", // опционально, по умолчанию false
+                                preAuthorization: false, // опционально, включить двухстадийные платежи
+                                paymentPurpose: "Оплата заказа", // опционально, описание платежа по умолчанию
+                                withReceipt: true, // опционально, включить формирование чеков
+                                taxSystemCode: "USN_INCOME", // обязательно если withReceipt = true
+                                taxItemDefault: "VAT_0", // обязательно если withReceipt = true
+                                taxShippingDefault: "VAT_0", // обязательно если withReceipt = true
+                            },
+                        }
+                    ]
+                }
+        }
+    ]
+})
+
 ```
 
 ## Переменные окружения

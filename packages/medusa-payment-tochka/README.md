@@ -59,33 +59,36 @@ npm install medusa-payment-tochka
 Add the plugin to your `medusa-config.ts`:
 
 ```typescript
-const modules = {
-  // ... other modules
-  payment: {
-    resolve: "@medusajs/payment",
-    options: {
-      providers: [
+module.exports = defineConfig({
+    modules: [
+        // ... other modules
         {
-          resolve: "medusa-payment-tochka",
-          id: "tochka",
-          options: {
-            tochkaJwtToken: process.env.TOCHKA_JWT_TOKEN,
-            clientId: process.env.TOCHKA_CLIENT_ID,
-            webhookPublicKeyJson: process.env.TOCHKA_WEBHOOK_PUBLIC_KEY,
-            tochkaApiVersion: "v1.0", // optional, defaults to "v1.0"
-            developerMode: process.env.NODE_ENV !== "production", // optional, defaults to false
-            preAuthorization: false, // optional, enable two-step payments
-            paymentPurpose: "Payment for order", // optional, default payment description
-            withReceipt: true, // optional, enable receipt generation
-            taxSystemCode: "USN_INCOME", // required if withReceipt is true
-            taxItemDefault: "VAT_0", // required if withReceipt is true
-            taxShippingDefault: "VAT_0", // required if withReceipt is true
-          },
-        },
-      ],
-    },
-  },
-}
+            resolve: "@medusajs/medusa/payment",
+            options:
+                {
+                    providers: [
+                        {
+                            resolve: "medusa-payment-tochka/providers/payment-tochka",
+                            id: "tochka",
+                            options: {
+                                tochkaJwtToken: process.env.TOCHKA_JWT_TOKEN,
+                                clientId: process.env.TOCHKA_CLIENT_ID,
+                                webhookPublicKeyJson: process.env.TOCHKA_WEBHOOK_PUBLIC_KEY,
+                                tochkaApiVersion: "v1.0", // optional, defaults to "v1.0"
+                                developerMode: process.env.NODE_ENV !== "production", // optional, defaults to false
+                                preAuthorization: false, // optional, enable two-step payments
+                                paymentPurpose: "Payment for order", // optional, default payment description
+                                withReceipt: true, // optional, enable receipt generation
+                                taxSystemCode: "USN_INCOME", // required if withReceipt is true
+                                taxItemDefault: "VAT_0", // required if withReceipt is true
+                                taxShippingDefault: "VAT_0", // required if withReceipt is true
+                            },
+                        }
+                    ]
+                }
+        }
+    ]
+})
 ```
 
 ## Environment Variables
