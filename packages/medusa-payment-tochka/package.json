@@ -29,9 +29,9 @@
     "medusa-plugin-integration",
     "medusa-plugin-payment",
     "medusa-payment",
-    "medusa-payment-yookassa",
-    "yookassa",
-    "yoomoney",
+    "medusa-payment-tochka",
+    "tochka",
+    "tochka-bank",
     "payment",
     "plugin"
   ],
@@ -43,7 +43,6 @@
     "prepublishOnly": "medusa plugin:build"
   },
   "dependencies": {
-    "@a2seven/yoo-checkout": "^1.1.4",
     "axios": "^1.9.0",
     "jose": "^6.1.0",
     "ts-jose": "^6.0.11"

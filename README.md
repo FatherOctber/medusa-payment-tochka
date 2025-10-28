@@ -1,11 +1,11 @@
 
-# `medusa-payment-yookassa` plugin monorepo
+# `medusa-payment-tochka` plugin monorepo
 
 This repository contains:
 
-- **[packages/medusa-payment-yookassa](packages/medusa-payment-tochka)** - `medusa-payment-yookassa` plugin source and distribution.
+- **[packages/medusa-payment-tochka](packages/medusa-payment-tochka)** - `medusa-payment-tochka` plugin source and distribution.
 - **[examples/](examples)** - Example apps (Medusa Admin + Storefront) showing plugin usage and bootstrapping a development environment.  
 
 ## References
 
-- [API YooKassa](https://yookassa.ru/developers)
+- [API Tochka](https://developers.tochka.com/docs/tochka-api/)
