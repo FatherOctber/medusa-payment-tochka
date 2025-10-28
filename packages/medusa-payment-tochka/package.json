@@ -1,6 +1,6 @@
 {
   "name": "medusa-payment-tochka",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Tochka Bank payment provider for Medusa",
   "author": "Nikita Mishnev",
   "license": "MIT",

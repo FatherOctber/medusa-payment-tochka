@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.medusajs.com">
-    <img alt="Medusa and Tochka Bank" src="medusa_and_tochka.png" height="120">
+    <img alt="Medusa and Tochka Bank" src="https://raw.githubusercontent.com/FatherOctber/medusa-payment-tochka/main/packages/medusa-payment-tochka/medusa_and_tochka.png" height="120">
   </a>
 
 </p>
@@ -12,7 +12,7 @@ Tochka Bank Payments for Medusa
 <p align="center">
   A Medusa plugin that provides Tochka Bank payment processing.
   <br/>
-  <a href="https://github.com/fatheroctober/medusa-payment-tochka/blob/HEAD/packages/medusa-payment-tochka/README.ru.md">Читать README на русском ↗</a>
+  <a href="https://github.com/FatherOctber/medusa-payment-tochka/blob/main/packages/medusa-payment-tochka/README.ru.md">Читать README на русском ↗</a>
 </p>
 
 <br/>
