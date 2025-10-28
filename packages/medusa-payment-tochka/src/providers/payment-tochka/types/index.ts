@@ -1,11 +1,8 @@
 import {
-    IWebHookEvent,
-    Payment,
-    Refund,
-} from "@a2seven/yoo-checkout"
-import {
     AcquiringCreatePaymentOperationRequestModel,
-    AcquiringCreatePaymentOperationWithReceiptRequestModel, TaxSystemCodeInput, VatType
+    AcquiringPaymentStatus,
+    TaxSystemCodeInput,
+    VatType
 } from "./tochka-api/tochka-api";
 
 
@@ -18,6 +15,14 @@ export interface TochkaOptions {
      * Tochka your client id
      */
     clientId: string;
+    /**
+     * Tochka webhook checking public key in json text format
+     */
+    webhookPublicKeyJson: string;
+    /**
+     * Tochka api version (default is v1.0)
+     */
+    tochkaApiVersion?: string;
     /**
      * Use this flag to work in dev mode in tochka api requests (default is false)
      */
@@ -52,15 +57,17 @@ export interface TochkaOptions {
 export interface PaymentOptions extends Partial<AcquiringCreatePaymentOperationRequestModel> {
 }
 
-export interface PaymentWithReceiptOptions extends Partial<AcquiringCreatePaymentOperationWithReceiptRequestModel> {
-}
-
-export interface YookassaEvent {
-    type: "notification",
-    event: IWebHookEvent,
-    object: Payment | Refund | object
-}
-
 export const PaymentProviderKeys = {
     TOCHKA: "tochka",
 }
+
+
+export interface TochkaWebhookPayload {
+    operationId?: string;
+    status?: AcquiringPaymentStatus;
+    amount?: number;
+    paymentType?: "card" | "sbp" | "dolyame";
+    webhookType?: string;
+    purpose?: string;
+}
+

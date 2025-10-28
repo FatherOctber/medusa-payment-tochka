@@ -3,8 +3,8 @@ import {
     TochkaBankPayment,
     TochkaBankOpenBanking,
     ApiVersion
-} from "../src/providers/payment-yookassa/lib/tochka-sdk";
-import {PaymentOrderStatusEnum} from "../src/providers/payment-yookassa/types/tochka-api/tochka-api";
+} from "../src/providers/payment-tochka/lib/tochka-sdk";
+import {PaymentOrderStatusEnum} from "../src/providers/payment-tochka/types/tochka-api/tochka-api";
 
 /**
  * Integration tests for TochkaBankPayment

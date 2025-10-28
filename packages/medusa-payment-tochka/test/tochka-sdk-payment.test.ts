@@ -3,7 +3,7 @@ import {
     TochkaBankSDKOptions,
     TochkaBankPayment,
     ApiVersion
-} from "../src/providers/payment-yookassa/lib/tochka-sdk";
+} from "../src/providers/payment-tochka/lib/tochka-sdk";
 
 /**
  * Mock fetch responses
@@ -633,8 +633,8 @@ describe("TochkaBankSDK - payment", () => {
             // Test createPaymentForSign with server error
             await payment.createPaymentForSign(ApiVersion.V10, {
                 Data: {
-                    accountNumber: "40702810100000001234",
-                    bankBic: "999999999",
+                    accountCode: "40702810100000001234",
+                    bankCode: "999999999",
                     counterpartyAccountNumber: "40817810100000005678",
                     counterpartyBankBic: "888888888",
                     counterpartyName: "ООО \"Контрагент\"",
@@ -665,8 +665,8 @@ describe("TochkaBankSDK - payment", () => {
             // Test createPayment with server error
             await payment.createPayment(ApiVersion.V10, {
                 Data: {
-                    accountNumber: "40702810100000001234",
-                    bankBic: "999999999",
+                    accountCode: "40702810100000001234",
+                    bankCode: "999999999",
                     counterpartyAccountNumber: "40817810100000005678",
                     counterpartyBankBic: "888888888",
                     counterpartyName: "ООО \"Контрагент\"",
@@ -689,8 +689,8 @@ describe("TochkaBankSDK - payment", () => {
 
             await expect(payment.createPaymentForSign(ApiVersion.V10, {
                 Data: {
-                    accountNumber: "40702810100000001234",
-                    bankBic: "999999999",
+                    accountCode: "40702810100000001234",
+                    bankCode: "999999999",
                     counterpartyAccountNumber: "40817810100000005678",
                     counterpartyBankBic: "888888888",
                     counterpartyName: "ООО \"Контрагент\"",
@@ -719,8 +719,8 @@ describe("TochkaBankSDK - payment", () => {
 
             await payment.createPayment(ApiVersion.V10, {
                 Data: {
-                    accountNumber: "40702810100000001234",
-                    bankBic: "999999999",
+                    accountCode: "40702810100000001234",
+                    bankCode: "999999999",
                     counterpartyAccountNumber: "40817810100000005678",
                     counterpartyBankBic: "888888888",
                     counterpartyName: "ООО \"Контрагент\"",

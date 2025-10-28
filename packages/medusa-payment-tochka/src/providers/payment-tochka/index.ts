@@ -1,10 +1,10 @@
 import { ModuleProvider, Modules } from "@medusajs/framework/utils"
 import {
-  YookassaService,
+    TochkaService,
 } from "./services"
 
 const services = [
-  YookassaService,
+  TochkaService,
 ]
 
 export default ModuleProvider(Modules.PAYMENT, {

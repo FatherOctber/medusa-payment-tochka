@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a monorepo containing a Medusa commerce payment plugin for Tochka Bank (formerly YooKassa). The plugin integrates Tochka Bank's payment processing with Medusa's payment provider architecture.
+This is a monorepo containing a Medusa commerce payment plugin for Tochka Bank. The plugin integrates Tochka Bank's payment processing with Medusa's payment provider architecture.
 
 **Tech Stack:**
 - TypeScript (target ES2021)
@@ -22,7 +22,7 @@ medusa-tochka-payment/
 │   └── medusa-payment-tochka/          # Main plugin package
 │       ├── src/
 │       │   ├── providers/               # Medusa payment provider module
-│       │   │   └── payment-yookassa/
+│       │   │   └── payment-tochka/
 │       │   │       ├── core/            # Base payment processor classes
 │       │   │       ├── services/        # Payment service implementations
 │       │   │       ├── types/           # TypeScript type definitions
@@ -43,7 +43,7 @@ medusa-tochka-payment/
 
 ### Payment Provider Pattern
 The plugin follows Medusa's ModuleProvider pattern:
-1. **YookassaService** (in `src/providers/payment-yookassa/services/yookassa.ts`): Implements payment operations (authorize, capture, refund, etc.)
+1. **TochkaService** (in `src/providers/payment-tochka/services/tochka.ts`): Implements payment operations (authorize, capture, refund, etc.)
 2. **Payment Processor**: Handles communication with Tochka Bank API
 3. **Receipt Generation**: Builds tax receipts from order data (required for Tochka)
 
@@ -111,21 +111,15 @@ yarn build
 
 ### Payment Configuration
 - Configured in Medusa via `medusa-config.ts` module configuration
-- Requires environment variables: `YOOKASSA_SHOP_ID`, `YOOKASSA_SECRET_KEY`
+- Requires environment variables: `TOCHKA_JWT_TOKEN`, `TOCHKA_CLIENT_ID`, `TOCHKA_WEBHOOK_JSON_KEY`
 - Supports auto-capture on payment authorization
 - Tax receipt generation enabled with configurable tax codes
 
 ### Tochka Bank Integration
 - Uses Tochka Bank API (spec available in `packages/tochka-api-spec.json`)
-- Custom SDK wrapper in `src/providers/payment-yookassa/lib/tochka-sdk.ts`
+- Custom SDK wrapper in `src/providers/payment-tochka/lib/tochka-sdk.ts`
 - Handles Russian tax receipt requirements (USN, etc.)
 - Payment description and metadata mapping from order
-
-### File Naming Note
-The codebase was migrated from YooKassa to Tochka Bank. Files still use "yookassa" in paths but implement Tochka functionality:
-- `src/providers/payment-yookassa/` contains Tochka payment implementation
-- Services may have both `yookassa.ts` (legacy) and `tochka.ts` (new implementation)
-- This is intentional to support both payment providers
 
 ## Database Setup
 - PostgreSQL required

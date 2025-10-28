@@ -1,4 +1,4 @@
-import { TochkaBankSDK, TochkaBankSDKOptions } from "../src/providers/payment-yookassa/lib/tochka-sdk";
+import { TochkaBankSDK, TochkaBankSDKOptions } from "../src/providers/payment-tochka/lib/tochka-sdk";
 
 /**
  * Mock fetch responses

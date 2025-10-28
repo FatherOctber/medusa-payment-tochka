@@ -36,7 +36,7 @@
     "plugin"
   ],
   "scripts": {
-    "generate_tochka_api": "swagger-typescript-api -p ./../medusa-payment-tochka/spec/tochka-api-spec.json -o ./../medusa-payment-tochka/src/providers/payment-yookassa/types/tochka-api -n tochka-api.ts",
+    "generate_tochka_api": "swagger-typescript-api -p ./../medusa-payment-tochka/spec/tochka-api-spec.json -o src/providers/payment-tochka/types/tochka-api -n tochka-api.ts",
     "build": "medusa plugin:build",
     "dev": "yarn predev && medusa plugin:develop",
     "predev": "medusa plugin:publish",
@@ -44,7 +44,9 @@
   },
   "dependencies": {
     "@a2seven/yoo-checkout": "^1.1.4",
-    "axios": "^1.9.0"
+    "axios": "^1.9.0",
+    "jose": "^6.1.0",
+    "ts-jose": "^6.0.11"
   },
   "devDependencies": {
     "@medusajs/admin-sdk": "^2.7.0",

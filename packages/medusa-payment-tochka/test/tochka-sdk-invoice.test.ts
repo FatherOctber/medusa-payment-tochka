@@ -3,7 +3,7 @@ import {
     TochkaBankSDKOptions,
     TochkaBankInvoice,
     ApiVersion
-} from "../src/providers/payment-yookassa/lib/tochka-sdk";
+} from "../src/providers/payment-tochka/lib/tochka-sdk";
 
 /**
  * Mock fetch responses

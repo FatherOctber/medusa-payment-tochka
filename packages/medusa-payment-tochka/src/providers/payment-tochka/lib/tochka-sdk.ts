@@ -12,7 +12,7 @@
  * Built on the generated OpenAPI client from tochka-api-spec.json
  */
 
-import { TochkaApi } from "../types/tochka-api/tochka-api";
+import {ApiVersion, TochkaApi} from "../types/tochka-api/tochka-api";
 import { TochkaBankAcquiring } from "./tochka-acquiring";
 import { TochkaBankInvoice } from "./tochka-invoice";
 import { TochkaBankOpenBanking } from "./tochka-openbanking";
@@ -68,7 +68,7 @@ export class TochkaBankSDK {
   private api: TochkaApi<unknown>;
   private jwtToken_: string;
   private clientId_: string;
-  private apiVersion_: string;
+  private apiVersion_: ApiVersion;
   private baseUrl_: string;
   private timeout_: number;
 
@@ -100,7 +100,7 @@ export class TochkaBankSDK {
 
     this.jwtToken_ = jwtToken;
     this.clientId_ = clientId;
-    this.apiVersion_ = apiVersion;
+    this.apiVersion_ = apiVersion as ApiVersion;
     this.timeout_ = timeout;
 
     // Set base URL based on environment
@@ -130,7 +130,7 @@ export class TochkaBankSDK {
   /**
    * Get the API version being used
    */
-  getApiVersion(): string {
+  getApiVersion(): ApiVersion {
     return this.apiVersion_;
   }
 
