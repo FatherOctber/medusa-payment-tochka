@@ -26,4 +26,3 @@ build
 .medusa
 
 yarn.lock
-package-lock.json
