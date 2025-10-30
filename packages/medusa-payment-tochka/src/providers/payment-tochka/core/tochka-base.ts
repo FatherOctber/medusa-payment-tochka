@@ -211,6 +211,7 @@ abstract class TochkaBase extends AbstractPaymentProvider<TochkaOptions> {
 
             return output
         } catch (e) {
+            this.logger_.error(`Can not initiate payment: ${JSON.stringify(e?.error)}`)
             throw this.buildError("An error occurred in initiatePayment", e)
         }
     }
@@ -268,6 +269,7 @@ abstract class TochkaBase extends AbstractPaymentProvider<TochkaOptions> {
 
             return output
         } catch (e) {
+            this.logger_.error(`Can not get payment status: ${JSON.stringify(e?.error)}`)
             throw this.buildError("An error occurred in getPaymentStatus", e)
         }
     }
@@ -303,6 +305,7 @@ abstract class TochkaBase extends AbstractPaymentProvider<TochkaOptions> {
 
             return output
         } catch (e) {
+            this.logger_.error(`Can not capture payment: ${JSON.stringify(e?.error)}`)
             throw this.buildError("An error occurred in capturePayment", e)
         }
     }
@@ -365,6 +368,10 @@ abstract class TochkaBase extends AbstractPaymentProvider<TochkaOptions> {
 
             return output
         } catch (e) {
+            this.logger_.error(`Can not get webhooks from tochka webhooks ${JSON.stringify(e?.error)}`)
+            if (e?.error && e?.error?.code == "404") {
+                return {}
+            }
             throw this.buildError("An error occurred in retrievePayment", e)
         }
     }
@@ -406,6 +413,7 @@ abstract class TochkaBase extends AbstractPaymentProvider<TochkaOptions> {
 
             return output
         } catch (e) {
+            this.logger_.error(`Can not refund payment: ${JSON.stringify(e?.error)}`)
             throw this.buildError("An error occurred in refundPayment", e)
         }
     }
@@ -457,16 +465,15 @@ abstract class TochkaBase extends AbstractPaymentProvider<TochkaOptions> {
                 operationId: operationId,
             }
         })
-        if(this.validateWebhookPayloadAndOriginalOperation(payloadData, paymentOperation.data as unknown as AcquiringGetPaymentOperationListItemModel)) {
-            this.logger_.warn(`TochkaBase.getWebhookActionAndData invalid webhook payload and original payment`)
+        if (!paymentOperation?.data || this.validateWebhookPayloadAndOriginalOperation(payloadData, paymentOperation.data as unknown as AcquiringGetPaymentOperationListItemModel)) {
+            this.logger_.warn(`TochkaBase.getWebhookActionAndData invalid webhook payload for original payment or original payment not found`)
             return {
                 action: PaymentActions.NOT_SUPPORTED
             }
         }
 
-        const sessionId = paymentOperation?.data?.paymentLinkId as string
+        const sessionId = paymentOperation.data?.paymentLinkId as string
 
-        if (sessionId) {}
         let result: WebhookActionResult
         switch (status) {
             case AcquiringPaymentStatus.APPROVED:
@@ -519,9 +526,9 @@ abstract class TochkaBase extends AbstractPaymentProvider<TochkaOptions> {
                 keys: [this.publicKeyJWK_]
             });
             const {payload, protectedHeader} = await jose.jwtVerify(webhookData.data as unknown as string, jwks)
-            console.log('JWT Verified Successfully!');
-            console.log('Payload:', payload);
-            console.log('Protected Header:', protectedHeader);
+            this.logger_.info('JWT Verified Successfully!');
+            this.logger_.info(`Payload: ${JSON.stringify(payload, null, 2)}`);
+            this.logger_.info(`Protected Header: ${JSON.stringify(protectedHeader, null, 2)}`);
             // For now, we'll do basic validation on the webhook payload structure
             const webhookPayload = payload as TochkaWebhookPayload
 
