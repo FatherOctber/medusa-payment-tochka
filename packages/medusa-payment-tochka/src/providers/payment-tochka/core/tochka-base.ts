@@ -518,7 +518,7 @@ abstract class TochkaBase extends AbstractPaymentProvider<TochkaOptions> {
             const jwks = jose.createLocalJWKSet({
                 keys: [this.publicKeyJWK_]
             });
-            const {payload, protectedHeader} = await jose.jwtVerify(webhookData.rawData, jwks)
+            const {payload, protectedHeader} = await jose.jwtVerify(webhookData.data as unknown as string, jwks)
             console.log('JWT Verified Successfully!');
             console.log('Payload:', payload);
             console.log('Protected Header:', protectedHeader);
