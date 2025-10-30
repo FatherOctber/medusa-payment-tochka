@@ -18,16 +18,19 @@ jobs:
           node-version: '20' # Or your preferred Node.js version
           registry-url: 'https://registry.npmjs.org' # For publishing to npm
 
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Install dependencies
-        run: npm ci # Use 'npm ci' for clean installs in CI
+        run: yarn install --frozen-lockfile
         working-directory: packages/medusa-payment-tochka
 
       - name: Build provider
-        run: npm run prepublishOnly
+        run: yarn prepublishOnly
         working-directory: packages/medusa-payment-tochka
 
       - name: Publish to npm
-        run: npm publish
+        run: yarn npm publish
         working-directory: packages/medusa-payment-tochka
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
