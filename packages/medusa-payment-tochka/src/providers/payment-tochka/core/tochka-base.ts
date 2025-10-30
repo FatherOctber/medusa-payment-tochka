@@ -174,7 +174,7 @@ abstract class TochkaBase extends AbstractPaymentProvider<TochkaOptions> {
 
             if (this.options_.withReceipt) {
                 const receiptPaymentParams = this.normalizePaymentWithReceiptParameters(data)
-                const receipt = generateTochkaReceipt(cart)
+                const receipt = generateTochkaReceipt(cart, this.options_.taxItemDefault, this.options_.taxShippingDefault)
 
                 const createPayload: AcquiringCreatePaymentOperationWithReceiptRequestModel = {
                     customerCode: this.tochkaSDK_.getClientId(),

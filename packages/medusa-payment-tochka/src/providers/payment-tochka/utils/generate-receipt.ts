@@ -8,7 +8,7 @@ import {
 } from "tochka-sdk";
 
 
-export function generateTochkaReceipt(cart: Record<string, any>): {
+export function generateTochkaReceipt(cart: Record<string, any>, taxItem: VatType = VatType.Vat0, taxShipping: VatType = VatType.Vat0): {
     Client: ReceiptClientModel;
     Items: ReceiptItemModelInput[];
 } {
@@ -36,7 +36,7 @@ export function generateTochkaReceipt(cart: Record<string, any>): {
         amount: parseFloat(formatCurrency(item.unit_price * item.quantity, currencyCode)),
         measure: Measure.ValueШт,
         paymentObject: PaymentObject.Goods,
-        vatType: this.options_.taxItemDefault || VatType.Vat0,
+        vatType: taxItem,
     }))
 
     if (shippingTotal > 0) {
@@ -46,7 +46,7 @@ export function generateTochkaReceipt(cart: Record<string, any>): {
             name: name.length > 128 ? name.slice(0, 125) + '…' : name,
             quantity: 1,
             amount: amount,
-            vatType: this.options_.taxShippingDefault || VatType.Vat0,
+            vatType: taxShipping,
         })
     }
 
