@@ -43,6 +43,7 @@ import {
 } from "tochka-sdk";
 import {PaymentOptions, TochkaOptions, TochkaWebhookPayload} from "../types"
 import {generateTochkaReceipt} from "../utils"
+import {ExternalTypeEnum} from "tochka-sdk/dist/tochka-api/tochka-api";
 
 type InjectedDependencies = {
     logger: Logger
@@ -171,13 +172,17 @@ abstract class TochkaBase extends AbstractPaymentProvider<TochkaOptions> {
             if (!cart) {
                 throw new Error("No cart provided")
             }
+            const customerCode = await this.getCustomerCodeForPayment()
+            if (!customerCode) {
+                throw new Error(`Customer code is undefined`)
+            }
 
             if (this.options_.withReceipt) {
                 const receiptPaymentParams = this.normalizePaymentWithReceiptParameters(data)
                 const receipt = generateTochkaReceipt(cart, this.options_.taxItemDefault, this.options_.taxShippingDefault)
 
                 const createPayload: AcquiringCreatePaymentOperationWithReceiptRequestModel = {
-                    customerCode: this.tochkaSDK_.getClientId(),
+                    customerCode: customerCode,
                     amount: parseFloat(amount as string),
                     ...receiptPaymentParams,
                     ...receipt,
@@ -191,7 +196,7 @@ abstract class TochkaBase extends AbstractPaymentProvider<TochkaOptions> {
             } else {
                 const standardPaymentParameter = this.normalizePaymentParameters(data)
                 const createPayload: AcquiringCreatePaymentOperationRequestModel = {
-                    customerCode: this.tochkaSDK_.getClientId(),
+                    customerCode: customerCode,
                     amount: parseFloat(amount as string),
                     ...standardPaymentParameter,
                 } as AcquiringCreatePaymentOperationRequestModel
@@ -562,6 +567,16 @@ abstract class TochkaBase extends AbstractPaymentProvider<TochkaOptions> {
         return new Error(
             `${message}: ${error.message}`.trim()
         )
+    }
+
+    protected async getCustomerCodeForPayment(): Promise<string | undefined> {
+        return await this.tochkaSDK_.OpenBanking.getCustomersList(this.tochkaSDK_.getApiVersion())
+            .then(({data}) => {
+                return data.Data.Customer.find(customer => customer.customerType === ExternalTypeEnum.Business)?.customerCode
+            }).catch((err: Error) => {
+                this.logger_.error(`Can not get customer list ${JSON.stringify(err, null, 2)}`)
+                return undefined
+            })
     }
 }
 
