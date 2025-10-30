@@ -29,17 +29,20 @@ import {
     WebhookActionResult
 } from "@medusajs/framework/types"
 import {AxiosError} from "axios"
-import {AcquiringPaymentStatus, TochkaBankAcquiring, TochkaBankSDK, VatType,} from "../lib/tochka-sdk"
-import {TochkaBankWebhook} from "../lib/tochka-webhook"
-import {PaymentOptions, TochkaOptions, TochkaWebhookPayload} from "../types"
-import {generateTochkaReceipt} from "../utils"
 import {
     AcquiringCreatePaymentOperationRequestModel,
     AcquiringCreatePaymentOperationResponseModel,
-    AcquiringCreatePaymentOperationWithReceiptRequestModel, AcquiringGetPaymentOperationListItemModel,
+    AcquiringCreatePaymentOperationWithReceiptRequestModel,
+    AcquiringGetPaymentOperationListItemModel,
     AcquiringPaymentMode,
-    TaxSystemCodeInput
-} from "../types/tochka-api/tochka-api";
+    AcquiringPaymentStatus,
+    TaxSystemCodeInput,
+    TochkaBankAcquiring,
+    TochkaBankSDK,
+    TochkaBankWebhook,
+} from "tochka-sdk";
+import {PaymentOptions, TochkaOptions, TochkaWebhookPayload} from "../types"
+import {generateTochkaReceipt} from "../utils"
 
 type InjectedDependencies = {
     logger: Logger
@@ -126,7 +129,7 @@ abstract class TochkaBase extends AbstractPaymentProvider<TochkaOptions> {
         const sessionId = extra?.session_id as string
         if (sessionId && sessionId.length > 0 && sessionId.length < 46) {
             // workaround to store session_id in tochka without own persistence
-            res.paymentLinkId = extra?.session_id as string
+            res.paymentLinkId = sessionId
         }
 
         return res

@@ -1,6 +1,6 @@
 {
   "name": "medusa-payment-tochka",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Tochka Bank payment provider for Medusa",
   "author": "Nikita Mishnev",
   "license": "MIT",
@@ -43,7 +43,6 @@
     "plugin"
   ],
   "scripts": {
-    "generate_tochka_api": "swagger-typescript-api -p ./../medusa-payment-tochka/spec/tochka-api-spec.json -o src/providers/payment-tochka/types/tochka-api -n tochka-api.ts",
     "build": "medusa plugin:build",
     "dev": "yarn predev && medusa plugin:develop",
     "predev": "medusa plugin:publish",
@@ -51,8 +50,7 @@
   },
   "dependencies": {
     "axios": "^1.9.0",
-    "jose": "^6.1.0",
-    "ts-jose": "^6.0.11"
+    "tochka-sdk": "^1.0.1"
   },
   "devDependencies": {
     "@medusajs/admin-sdk": "^2.7.0",
@@ -73,14 +71,12 @@
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
     "awilix": "^8.0.1",
-    "jest": "^30.2.0",
     "openapi-typescript": "^7.10.1",
     "pg": "^8.13.0",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "swagger-typescript-api": "^13.2.16",
-    "ts-jest": "^29.4.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2",
     "vite": "^5.2.11",

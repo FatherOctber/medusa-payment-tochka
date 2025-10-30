@@ -5,7 +5,7 @@ import {
     ReceiptClientModel,
     ReceiptItemModelInput,
     VatType
-} from "../types/tochka-api/tochka-api";
+} from "tochka-sdk";
 
 
 export function generateTochkaReceipt(cart: Record<string, any>): {

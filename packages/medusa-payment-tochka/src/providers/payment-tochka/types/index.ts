@@ -3,7 +3,7 @@ import {
     AcquiringPaymentStatus,
     TaxSystemCodeInput,
     VatType
-} from "./tochka-api/tochka-api";
+} from "tochka-sdk";
 
 
 export interface TochkaOptions {
