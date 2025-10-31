@@ -79,9 +79,9 @@ module.exports = defineConfig({
                                 preAuthorization: false, // optional, enable two-step payments
                                 paymentPurpose: "Payment for order", // optional, default payment description
                                 withReceipt: true, // optional, enable receipt generation
-                                taxSystemCode: "USN_INCOME", // required if withReceipt is true
-                                taxItemDefault: "VAT_0", // required if withReceipt is true
-                                taxShippingDefault: "VAT_0", // required if withReceipt is true
+                                taxSystemCode: "usn_income", // required if withReceipt is true
+                                taxItemDefault: "vat0", // required if withReceipt is true
+                                taxShippingDefault: "vat0", // required if withReceipt is true
                             },
                         }
                     ]

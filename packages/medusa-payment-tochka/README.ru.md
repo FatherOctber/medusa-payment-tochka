@@ -79,9 +79,9 @@ module.exports = defineConfig({
                                 preAuthorization: false, // опционально, включить двухстадийные платежи
                                 paymentPurpose: "Оплата заказа", // опционально, описание платежа по умолчанию
                                 withReceipt: true, // опционально, включить формирование чеков
-                                taxSystemCode: "USN_INCOME", // обязательно если withReceipt = true
-                                taxItemDefault: "VAT_0", // обязательно если withReceipt = true
-                                taxShippingDefault: "VAT_0", // обязательно если withReceipt = true
+                                taxSystemCode: "usn_income", // обязательно если withReceipt = true
+                                taxItemDefault: "vat0", // обязательно если withReceipt = true
+                                taxShippingDefault: "vat0", // обязательно если withReceipt = true
                             },
                         }
                     ]

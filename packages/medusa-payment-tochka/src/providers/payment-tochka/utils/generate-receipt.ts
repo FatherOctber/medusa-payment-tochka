@@ -35,7 +35,7 @@ export function generateTochkaReceipt(cart: Record<string, any>, taxItem?: VatTy
         quantity: item.quantity,
         amount: parseFloat(formatCurrency(item.total, currencyCode)),
         measure: Measure.ValueШт,
-        paymentObject: item.product_type === "Service" ? PaymentObject.Service : PaymentObject.Goods,
+        paymentObject: item.product_type?.lowercase() === "service" ? PaymentObject.Service : PaymentObject.Goods,
         vatType: taxItem || VatType.Vat0,
     }))
 
