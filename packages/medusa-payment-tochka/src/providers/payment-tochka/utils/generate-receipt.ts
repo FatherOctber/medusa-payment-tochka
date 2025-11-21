@@ -46,6 +46,7 @@ export function generateTochkaReceipt(cart: Record<string, any>, taxItem?: VatTy
             name: name.length > 128 ? name.slice(0, 125) + '…' : name,
             quantity: 1,
             amount: amount,
+            paymentObject: PaymentObject.Service,
             vatType: taxShipping || VatType.Vat0,
         })
     }

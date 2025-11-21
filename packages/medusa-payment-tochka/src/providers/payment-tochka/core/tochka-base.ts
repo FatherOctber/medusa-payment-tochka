@@ -94,7 +94,7 @@ abstract class TochkaBase extends AbstractPaymentProvider<TochkaOptions> {
         this.tochkaWebhook_ = this.tochkaSDK_.Webhook
         this.tochkaAcquiring_ = this.tochkaSDK_.Acquiring
         this.publicKeyJWK_ = JSON.parse(this.options_.webhookPublicKeyJson)
-        this.logger_.info("TochkaBase payment provider was created successfully.")
+        this.logger_.info(`TochkaBase payment provider was created successfully: api_v=${this.tochkaSDK_.getApiVersion()}, url=${this.tochkaSDK_.getBaseUrl()}`)
     }
 
     abstract get paymentOptions(): PaymentOptions
